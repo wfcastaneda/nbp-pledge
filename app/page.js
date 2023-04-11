@@ -14,7 +14,8 @@ const Button = ({onClick, buttonText}) => {
 
 export default function Home() {
   const { data: session } = useSession();
-    return (
+  console.log(session);
+  return (
     <main className="flex min-h-screen flex-col items-center bg-gray-200">
       <div className="grid grid-cols-6 gap-y-3 gap-x-2 mt-8">
         { session && (
@@ -45,6 +46,11 @@ export default function Home() {
             Sign out
           </button>
         )}
+      </div>
+      <div>
+        {/* {session && (
+          <ServerSession />
+        )} */}
       </div>
     </main>
   )

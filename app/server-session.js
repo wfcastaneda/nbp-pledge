@@ -1,14 +1,7 @@
 import { getServerSession } from "next-auth/next";
-import UserInformation from "./user-information";
+import { authOptions } from "pages/api/auth/[...nextauth]";
 
-export default async function AppDescription() {
-  const session = await getServerSession();
-  return (
-    <div>
-      <div>
-        This is the application description component (server component).
-      </div>
-      <UserInformation data={session?.user} />
-    </div>
-  );
+export default async function ServerSession () {
+  const session = await getServerSession(authOptions)
+  return <pre>{JSON.stringify(session, null, 2)}</pre>
 }
