@@ -1,4 +1,6 @@
+import Footer from './footer';
 import './globals.css';
+import Header from './header';
 import Providers from './providers';
 
 export const metadata = {
@@ -11,7 +13,15 @@ export default function RootLayout({ children }) {
         <html>
             <head />
             <body>
-                <Providers>{children}</Providers>
+                <main className='flex min-h-screen flex-col items-center bg-gray-200'>
+                    <div className='mx-2 mt-8 grid grid-cols-6 gap-x-2 gap-y-3 md:max-w-lg'>
+                        <Providers>
+                            <Header />
+                            {children}
+                            <Footer />
+                        </Providers>
+                    </div>
+                </main>
             </body>
         </html>
     );
