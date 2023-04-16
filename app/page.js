@@ -61,14 +61,16 @@ export default function Home() {
                     </div>
                     <div className='my-2 font-normal'>Recent pledges:</div>
                     {pledges?.recent.map(pledge => (
-                        <div className='font-mono'>{pledge.twitterHandle}</div>
+                        <div key={pledge.twitterHandle} className='font-mono'>
+                            {pledge.twitterHandle}
+                        </div>
                     ))}
                 </div>
                 <div className='col-span-6'>
                     {session ? (
                         pledge ? (
                             <div className='w-full border-2 border-gray-600 bg-white p-2  text-center font-semibold'>
-                                Congratulations! You've signed the pledge!
+                                Congratulations! You signed the pledge!
                             </div>
                         ) : (
                             <Button
