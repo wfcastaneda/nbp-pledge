@@ -10,7 +10,7 @@ const Footer = () => {
     }
     return (
         <div className='col-span-6'>
-            <Button onClick={signOut} buttonText='Sign out' />
+            <Button onClick={signOut} color='white' buttonText='Sign out' />
         </div>
     );
 };

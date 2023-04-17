@@ -39,19 +39,29 @@ export default function Home() {
 
     return (
         <>
-            <div className='col-span-6 border-2 border-gray-600 bg-white px-6 py-16 text-center text-lg font-extrabold'>
-                The Never Bitcoin Pledge
-                <div className='my-2 font-mono font-normal'>
-                    Pledges to date: {pledges?.count}
-                </div>
-                {pledges?.length && (
-                    <div className='my-2 font-normal'>Recent pledges:</div>
-                )}
-                {pledges?.recent.map(pledge => (
-                    <div key={pledge.twitterHandle} className='font-mono'>
-                        {pledge.twitterHandle}
-                    </div>
-                ))}
+            <div className='col-span-6 py-10 text-lg font-extrabold'>
+                <table className='h-border-l-2 max-h-72 w-full overflow-y-scroll border-gray-400 text-sm shadow'>
+                    <thead>
+                        <tr className='border-b border-black font-bold'>
+                            <th className='p-1 text-left'>Pledges</th>
+                            <th className='p-1 text-right'>{`# to date: ${
+                                pledges?.length || 0
+                            }`}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {pledges?.recent.map(pledge => (
+                            <tr key={pledge.twitterHandle} className=''>
+                                <td>{pledge.twitterHandle}</td>
+                            </tr>
+                        ))}
+                        {!pledges?.recent.length && (
+                            <tr>
+                                <td className='p-1'>No pledges</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
             </div>
             <div className='col-span-6'>
                 {session ? (
@@ -62,6 +72,7 @@ export default function Home() {
                     ) : (
                         <Button
                             onClick={() => postPledge()}
+                            color='amber'
                             buttonText='Sign the pledge'
                         />
                     )

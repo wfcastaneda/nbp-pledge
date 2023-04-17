@@ -9,20 +9,13 @@ const Header = () => {
         return null;
     }
     return (
-        <div className='col-span-6 flex flex-row items-center justify-between border-2 border-gray-600 bg-white px-3 py-2 font-mono text-lg'>
-            <div>
-                Authenticated as:{' '}
-                <div className='font-semibold'>
+        <div className='col-span-6 py-2  text-sm'>
+            <div className='flex flex-row items-center justify-between'>
+                <div>Authenticated</div>
+                <div className='border border-black bg-green-600 px-1 py-px text-center text-white'>
                     {session.twitter?.twitterHandle}
                 </div>
             </div>
-            <Image
-                className='rounded-full'
-                src={session.user?.image}
-                alt='Profile photo'
-                width='36'
-                height='36'
-            />
         </div>
     );
 };

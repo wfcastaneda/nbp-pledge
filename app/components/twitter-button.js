@@ -2,7 +2,7 @@ import Script from 'next/script';
 
 export default function TwitterButton() {
     return (
-        <div className='flex h-11 w-full flex-row items-center  justify-center border-2 border-gray-600 bg-white py-2 text-center font-semibold'>
+        <div className='flex h-[34px] w-full flex-row items-center justify-center border border-black py-1 text-center font-semibold shadow'>
             <a
                 href='https://twitter.com/share?ref_src=twsrc%5Etfw'
                 className='twitter-share-button'

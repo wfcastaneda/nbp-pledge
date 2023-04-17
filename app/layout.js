@@ -13,8 +13,11 @@ export default function RootLayout({ children }) {
         <html>
             <head />
             <body>
-                <main className='flex min-h-screen flex-col items-center bg-gray-200'>
-                    <div className='mx-2 mt-8 grid grid-cols-6 gap-x-2 gap-y-3 md:max-w-lg'>
+                <main className='bg-gray-10 flex min-h-screen flex-col items-center'>
+                    <div className='mx-2 mt-8 grid w-full grid-cols-6 gap-x-2 gap-y-3 px-6 md:max-w-sm md:px-0'>
+                        <h1 className='col-span-6 border-b border-gray-300 pb-2 font-semibold'>
+                            The Never Bitcoin pledge
+                        </h1>
                         <Providers>
                             <Header />
                             {children}
