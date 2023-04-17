@@ -79,7 +79,7 @@ export default function Home() {
             </div>
             <div className='col-span-6'>
                 {session?.user &&
-                    pledge &&
+                    pledge !== undefined &&
                     (pledge?.id ? (
                         <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
                             Congratulations! You signed the pledge!
