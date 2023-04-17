@@ -21,12 +21,16 @@ export default function Home() {
     };
 
     const fetchPledge = async () => {
-        let json = await fetch('api/pledge').then(res => res.json());
+        let json = await fetch('api/pledges', {
+            next: { revalidate: 0 },
+        }).then(res => res.json());
         setPledge(json);
     };
 
     const fetchPledges = async () => {
-        let json = await fetch('api/pledges').then(res => res.json());
+        let json = await fetch('api/pledges', {
+            next: { revalidate: 0 },
+        }).then(res => res.json());
         setPledges(json);
     };
 
@@ -45,7 +49,7 @@ export default function Home() {
                         <tr className='border-b border-black font-bold'>
                             <th className='p-1 text-left'>Pledges</th>
                             <th className='p-1 text-right'>{`# to date: ${
-                                pledges?.length || 0
+                                pledges ? pledges.count : 0
                             }`}</th>
                         </tr>
                     </thead>
