@@ -44,7 +44,9 @@ export default function Home() {
                 <div className='my-2 font-mono font-normal'>
                     Pledges to date: {pledges?.count}
                 </div>
-                <div className='my-2 font-normal'>Recent pledges:</div>
+                {pledges?.length && (
+                    <div className='my-2 font-normal'>Recent pledges:</div>
+                )}
                 {pledges?.recent.map(pledge => (
                     <div key={pledge.twitterHandle} className='font-mono'>
                         {pledge.twitterHandle}
