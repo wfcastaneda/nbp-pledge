@@ -75,17 +75,18 @@ export default function Home() {
                 )}
             </div>
             <div className='col-span-6'>
-                {session && pledge?.id ? (
-                    <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
-                        Congratulations! You signed the pledge!
-                    </div>
-                ) : (
-                    <Button
-                        onClick={() => postPledge()}
-                        color='amber'
-                        buttonText='Sign the pledge'
-                    />
-                )}
+                {session?.user &&
+                    (pledge?.id ? (
+                        <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
+                            Congratulations! You signed the pledge!
+                        </div>
+                    ) : (
+                        <Button
+                            onClick={() => postPledge()}
+                            color='amber'
+                            buttonText='Sign the pledge'
+                        />
+                    ))}
                 {session === null && (
                     <Button
                         onClick={() => signIn('twitter')}
