@@ -8,7 +8,6 @@ import { getToken } from 'next-auth/jwt';
 //         req: request,
 //         secret: process.env.NEXTAUTH_SECRET,
 //     });
-//     console.log(token);
 //     let data = {};
 //     // try {
 //     //     const twitterClient = new Twitter({
@@ -29,9 +28,6 @@ import { getToken } from 'next-auth/jwt';
 //     //         description: userData.description,
 //     //         location: userData.location,
 //     //     };
-
-//     //     console.log('DATA: ', data);
-
 //     //     // return res.status(200).json({
 //     //     //     status: 'Ok',
 //     //     //     data
@@ -39,10 +35,7 @@ import { getToken } from 'next-auth/jwt';
 //     // } catch (error) {
 //     //     // return error;
 //     //     // return res.status(500).send({ error });
-//     //     console.log('ERROR: ', error);
 //     // }
-
-//     // console.log("JSON Web Token", JSON.stringify(token, null, 2))
 //     if (request.method === 'GET') {
 //         try {
 //             const pledgeData = await prisma.pledge.count();

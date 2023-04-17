@@ -4,6 +4,7 @@ import { useSession, signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
 import Button from './components/button';
+import TwitterButton from './components/twitter-button';
 
 export default function Home() {
     const { data: session } = useSession();
@@ -16,7 +17,7 @@ export default function Home() {
         let json = await fetch('api/pledge', {
             method: 'POST',
         }).then(res => res.json());
-        console.log('RES', json);
+        setPledge(json);
     };
 
     const fetchPledge = async () => {
@@ -70,10 +71,7 @@ export default function Home() {
                 )}
             </div>
             <div className='col-span-3'>
-                <Button
-                    onClick={() => router.push('/share')}
-                    buttonText='Share'
-                />
+                <TwitterButton />
             </div>
             <div className='col-span-3'>
                 <Button
