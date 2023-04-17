@@ -8,30 +8,32 @@ import TwitterButton from './components/twitter-button';
 
 export default function Home() {
     const { data: session } = useSession();
+
     const router = useRouter();
 
     const [pledge, setPledge] = useState(null);
     const [pledges, setPledges] = useState(null);
-
-    const postPledge = async () => {
-        let json = await fetch('api/pledge', {
-            method: 'POST',
-        }).then(res => res.json());
-        setPledge(json);
-    };
-
-    const fetchPledge = async () => {
-        let json = await fetch('api/pledges', {
-            next: { revalidate: 0 },
-        }).then(res => res.json());
-        setPledge(json);
-    };
 
     const fetchPledges = async () => {
         let json = await fetch('api/pledges', {
             next: { revalidate: 0 },
         }).then(res => res.json());
         setPledges(json);
+    };
+
+    const postPledge = async () => {
+        let json = await fetch('api/pledge', {
+            method: 'POST',
+        }).then(res => res.json());
+        setPledge(json);
+        fetchPledges();
+    };
+
+    const fetchPledge = async () => {
+        let json = await fetch('api/pledge', {
+            next: { revalidate: 0 },
+        }).then(res => res.json());
+        setPledge(json);
     };
 
     useEffect(() => {
@@ -44,35 +46,38 @@ export default function Home() {
     return (
         <>
             <div className='col-span-6 py-10 text-lg font-extrabold'>
-                <table className='h-border-l-2 max-h-72 w-full overflow-y-scroll border-gray-400 text-sm shadow'>
-                    <thead>
-                        <tr className='border-b border-black font-bold'>
-                            <th className='p-1 text-left'>Pledges</th>
-                            <th className='p-1 text-right'>{`# to date: ${
-                                pledges ? pledges.count : 0
-                            }`}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {pledges?.recent.map(pledge => (
-                            <tr key={pledge.twitterHandle} className=''>
-                                <td className='p-1'>{pledge.name}</td>
-                                <td className='p-1 text-right'>
-                                    {pledge.twitterHandle}
-                                </td>
+                {pledges && (
+                    <table className='max-h-72 w-full overflow-y-scroll border-l-2 border-gray-400 text-sm shadow'>
+                        <thead>
+                            <tr className='border-b border-black font-bold'>
+                                <th className='p-1 text-left'>Pledges</th>
+                                <th className='p-1 text-right'>{`# to date: ${
+                                    pledges ? pledges.count : 0
+                                }`}</th>
                             </tr>
-                        ))}
-                        {!pledges?.recent.length && (
-                            <tr>
-                                <td className='p-1'>No pledges</td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {pledges?.recent.map(pledge => (
+                                <tr key={pledge.twitterHandle}>
+                                    <td className='p-1'>{pledge.name}</td>
+                                    <td className='p-1 text-right'>
+                                        {pledge.twitterHandle}
+                                    </td>
+                                </tr>
+                            ))}
+                            {!pledges?.recent.length && (
+                                <tr>
+                                    <td className='p-1'>No pledges</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                )}
             </div>
             <div className='col-span-6'>
-                {session ? (
-                    pledge ? (
+                {session &&
+                    pledge &&
+                    (pledge?.id ? (
                         <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
                             Congratulations! You signed the pledge!
                         </div>
@@ -82,8 +87,8 @@ export default function Home() {
                             color='amber'
                             buttonText='Sign the pledge'
                         />
-                    )
-                ) : (
+                    ))}
+                {session === null && (
                     <Button
                         onClick={() => signIn('twitter')}
                         buttonText='Sign in with Twitter'
