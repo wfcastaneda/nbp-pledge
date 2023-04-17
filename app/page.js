@@ -56,7 +56,10 @@ export default function Home() {
                     <tbody>
                         {pledges?.recent.map(pledge => (
                             <tr key={pledge.twitterHandle} className=''>
-                                <td>{pledge.twitterHandle}</td>
+                                <td className='p-1'>{pledge.name}</td>
+                                <td className='p-1 text-right'>
+                                    {pledge.twitterHandle}
+                                </td>
                             </tr>
                         ))}
                         {!pledges?.recent.length && (
@@ -70,7 +73,7 @@ export default function Home() {
             <div className='col-span-6'>
                 {session ? (
                     pledge ? (
-                        <div className='w-full border-2 border-gray-600 bg-white p-2  text-center font-semibold'>
+                        <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
                             Congratulations! You signed the pledge!
                         </div>
                     ) : (
