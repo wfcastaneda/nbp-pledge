@@ -49,6 +49,8 @@ import { getToken } from 'next-auth/jwt';
 //     }
 // }
 
+export const revalidate = 0;
+
 export async function GET(request) {
     const token = await getToken({
         req: request,

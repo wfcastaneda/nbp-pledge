@@ -45,9 +45,9 @@ export default function Home() {
 
     return (
         <>
-            <div className='col-span-6 py-10 text-lg font-extrabold'>
+            <div className='col-span-6 py-8 text-lg font-extrabold'>
                 {pledges && (
-                    <table className='max-h-72 w-full overflow-y-scroll border-l-2 border-gray-400 text-sm shadow'>
+                    <table className='max-h-72 w-full overflow-y-scroll border-b border-l-4 border-r border-t-2 border-gray-400 border-t-black text-sm shadow'>
                         <thead>
                             <tr className='border-b border-black font-bold'>
                                 <th className='p-1 text-left'>Pledges</th>
@@ -56,9 +56,12 @@ export default function Home() {
                                 }`}</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='divide-y divide-gray-400'>
                             {pledges?.recent.map(pledge => (
-                                <tr key={pledge.twitterHandle}>
+                                <tr
+                                    key={pledge.twitterHandle}
+                                    className='divide-x divide-gray-400'
+                                >
                                     <td className='p-1'>{pledge.name}</td>
                                     <td className='p-1 text-right'>
                                         {pledge.twitterHandle}
@@ -76,6 +79,7 @@ export default function Home() {
             </div>
             <div className='col-span-6'>
                 {session?.user &&
+                    pledge &&
                     (pledge?.id ? (
                         <div className='`w-full cursor-pointer border border-black bg-blue-600 p-1 text-center font-semibold text-white shadow'>
                             Congratulations! You signed the pledge!
